@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jikan API Vue Thingy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="app">
+    <div :class="{blocked: modalOpened}">
+        <div class="button-container">
+            Select Genre: 
+            <select v-model="selectedID">
+                <option v-for="genre in genres" :key="genre.id" :value="genre.id + 1">{{ genre.genre }}</option>
+            </select>
+        </div>
+        <template v-if="modalOpened">
+            <div class="modal">
+                <img :src="selectedModalAnime.image_url" alt="">
+                <div class="modal-content-container">
+                    <h1>{{ selectedModalAnime.title }}</h1>
+                    <p>Score: {{ selectedModalAnime.score }} Episodes: {{ selectedModalAnime.episodes }}
+                        <button @click="setModal(false, null)">Close Modal</button>
+                    </p>
+                    <p>{{ selectedModalAnime.synopsis }}</p>
+                </div>
+            </div>
+        </template>
+        <template v-if="!loading">
+            <div class="anime-container">
+                <div class="anime-list-container">
+                    <div v-for="anime in animeData" :key="anime.mal_id" class="anime-list-item">
+                        <img :src="anime.image_url"
+                            alt="Anime Image"
+                            :style="{width: currentWidth* 0.3}"
+                        >
+                        <div class="text-container">
+                            <h1>{{ anime.title }}</h1>
+                            <p>Score: {{ anime.score }} Episodes: {{ anime.episodes }}</p>
+                            <p v-if="currentWidth > 900">
+                                {{ anime.synopsis.substring(0, 250) + "..." }} <button @click="setModal(true, anime)">Read More.</button>
+                            </p>
+                            <button v-else @click="setModal(true, anime)">
+                                see synopsis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="loading">
+                <h1>Loading</h1>
+            </div>
+        </template>
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

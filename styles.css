@@ -1,0 +1,113 @@
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat Alternates";
+    overflow-x: hidden;
+}
+.blocked {
+    overflow-y: hidden;
+}
+.anime-container {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.anime-list-container {
+    display: flex;
+    margin: 40px;
+    width: 60vw;
+    height: 80vh;
+    overflow-y: scroll;
+    flex-direction: column;
+}
+.flex {
+    display: flex;
+}
+img {
+    margin: auto 30px;
+    height: 20vh;
+}
+.anime-list-item {
+    display: flex;
+    border-bottom: 1px solid black;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    z-index: 5;
+}
+.button-container { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+select {
+    margin-left: 20px;
+}
+
+.modal img {
+    margin: 30px;
+    width: 30%;
+    height: 70%;
+}
+.modal-content-container {
+    height: 40%;
+    width: 30%;
+    overflow-y: scroll;
+}
+@media (max-width: 900px) {
+    .anime-container {
+        height: 100vh;
+    }
+    .anime-list-container {
+        width: 100vw;
+        height: 100vh;
+        overflow: unset;
+    }
+    .text-container h1 {
+        font-size: small;
+    }
+    .modal-content-container {
+        height: 80vh;
+        width: 90%;
+    }
+
+    .modal img {
+        height: 70%;
+        margin-top: 30px;
+        width: 60vw;
+    }
+    .modal {
+        flex-direction: column;
+    }
+}
