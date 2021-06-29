@@ -111,3 +111,6 @@ select {
         flex-direction: column;
     }
 }
+[v-cloak] {
+    display: none;
+}
